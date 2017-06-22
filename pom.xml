@@ -369,7 +369,7 @@
                         <dependencies>
                             <dependency>
                                 <groupId>com.edurekademo.tutorial</groupId>
-                                <artifactId>addressbook</artifactId>
+                                <artifactId>demo</artifactId>
                                 <version>${project.version}</version>
                             </dependency>
                         </dependencies>
@@ -408,7 +408,7 @@
                         <dependencies>
                             <dependency>
                                 <groupId>com.edurekademo.tutorial</groupId>
-                                <artifactId>addressbook</artifactId>
+                                <artifactId>demo</artifactId>
                                 <version>${project.version}</version>
                             </dependency>
                         </dependencies>
@@ -442,9 +442,28 @@
                             <!-- CPD options -->
                             <minimumTokens>20</minimumTokens>
                             <ignoreIdentifiers>true</ignoreIdentifiers>
-
                         </configuration>
                     </plugin>
+			<plugin>
+<artifactId>maven-assembly-plugin</artifactId>
+<version>2.2-beta-1</version>
+<executions>
+<execution>
+<id>make-assembly</id>
+<phase>package</phase>
+<goals>
+<goal>single</goal>
+</goals>
+<configuration>
+<descriptors>
+<descriptor>src/main/assembly/kit.xml</descriptor>
+</descriptors>
+<finalName>${pom.artifactId}-${pom.version}</finalName>
+<outputDirectory>build/maven/${pom.artifactId}/target</outputDirectory>
+</configuration>
+</execution>
+</executions>
+</plugin>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-checkstyle-plugin</artifactId>
@@ -486,10 +505,7 @@
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-jxr-plugin</artifactId>
                         <version>2.1</version>
-			    <configuration>
-          <warName>bird.war</warName>
-        </configuration>
-                    </plugin>
+	           </plugin>
                 </plugins>
             </reporting>
         </profile>
